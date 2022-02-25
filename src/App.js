@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { EmployeeDetails, Employees } from 'components';
 import { EmployeeEmpty } from 'elements';
-import './App.css';
 
 const App = () => {
     const [employeeId, setEmployeeId] = useState('');
