@@ -60,7 +60,12 @@
         "react/prop-types": 0,
         // disable jsx filename
         "react/jsx-filename-extension": 0,
-        "no-restricted-exports": 0,
+        "no-restricted-exports": [0, {
+          "restrictedNamedExports": [
+            "default",
+            "then"
+          ]
+        }],
         "no-plusplus": 0,
         // currently eslint has problem with linting jsx tags inside ternary operators
         "react/jsx-closing-tag-location": 0

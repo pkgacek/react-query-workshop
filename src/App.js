@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { EmployeeDetails, Employees } from 'components';
+import { EmployeeEmpty } from 'elements';
 import './App.css';
-import EmployeeDetails from './EmployeeDetails';
-import EmployeeEmpty from './EmployeeEmpty';
-import Employees from './Employees';
 
 const App = () => {
     const [employeeId, setEmployeeId] = useState('');
+
+    const handleSetEmployeeId = (id) => {
+        setEmployeeId(id);
+    };
 
     return (
         <div className="App">
@@ -16,15 +19,18 @@ const App = () => {
                     borderRight: '2px solid white',
                 }}
                 >
-                    <Employees setEmployeeId={setEmployeeId} />
+                    <Employees setEmployeeId={handleSetEmployeeId} />
                 </div>
                 <div style={{
                     padding: 20,
                     width: '60%',
                 }}
                 >
-                    {!employeeId && <EmployeeEmpty />}
-                    {employeeId && <EmployeeDetails employeeId={employeeId} />}
+                    {!employeeId ? (
+                        <EmployeeEmpty />
+                    ) : (
+                        <EmployeeDetails employeeId={employeeId} />
+                    )}
                 </div>
 
             </div>
