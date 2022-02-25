@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import EmployeeDetails from './EmployeeDetails';
+import EmployeeEmpty from './EmployeeEmpty';
+import Employees from './Employees';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [employeeId, setEmployeeId] = useState('');
+
+    return (
+        <div className="App">
+            <div className="App-header" style={{ display: 'flex' }}>
+                <div style={{
+                    padding: 20,
+                    width: '40%',
+                    borderRight: '2px solid white',
+                }}
+                >
+                    <Employees setEmployeeId={setEmployeeId} />
+                </div>
+                <div style={{
+                    padding: 20,
+                    width: '60%',
+                }}
+                >
+                    {!employeeId && <EmployeeEmpty />}
+                    {employeeId && <EmployeeDetails employeeId={employeeId} />}
+                </div>
+
+            </div>
+        </div>
+    );
+};
 
 export default App;
