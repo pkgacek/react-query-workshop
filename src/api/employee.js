@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// mock example api
 const URL = 'http://dummy.restapiexample.com/api/v1';
 const api = axios.create({
     baseURL: URL,
