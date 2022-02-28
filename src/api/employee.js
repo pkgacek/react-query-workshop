@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // mock example api
-const URL = 'http://dummy.restapiexample.com/api/v1';
+const URL = 'http://localhost:4000';
 const api = axios.create({
     baseURL: URL,
 });
@@ -10,7 +10,7 @@ export const getEmployeeList = async () => {
     const response = await api.get('/employees');
 
     // this mock api returns `data` object.
-    return response.data.data;
+    return response.data;
 };
 
 export const createEmployee = async (createdEmployee) => {
@@ -20,15 +20,18 @@ export const createEmployee = async (createdEmployee) => {
 };
 
 export const getEmployee = async (id) => {
-    const response = await api.get(`/employee/${id}`);
+    const response = await api.get(`/employees/${id}`);
 
-    return response.data.data;
+    return response.data;
 };
 
 export const updateEmployee = async ({ id, ...updatedEmployee }) => {
-    const response = await api.put(`/update/${id}`, updatedEmployee);
+    if (updatedEmployee.employee_name === 'Error') {
+        throw new Error('Throw error');
+    }
+    const response = await api.put(`/employees/${id}`, updatedEmployee);
 
-    return response.data.data;
+    return response.data;
 };
 
 export const deleteEmployee = async (id) => {

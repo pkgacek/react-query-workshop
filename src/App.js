@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { EmployeeDetails, Employees } from 'components';
-import { EmployeeEmpty } from 'elements';
+import { EmployeeEmpty } from './elements';
+import { EmployeeDetails, Employees } from './components';
 
 const App = () => {
     const [employeeId, setEmployeeId] = useState('');

@@ -1,17 +1,18 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { EmployeeCard } from 'elements';
-import { API, CACHE_KEYS } from 'api';
+import { API, CACHE_KEYS } from '../api';
+import { EmployeeCard } from '../elements';
 
 const Employees = ({ setEmployeeId }) => {
     const queryConfig = {
         retry: false,
     };
+    // Pass queryFn as a arrow function to invoke it only once.
     const {
         data, isLoading, isError, isSuccess, error: _error,
     } = useQuery(
         CACHE_KEYS.EMPLOYEES,
-        API.getEmployeeList,
+        () => API.getEmployeeList(),
         queryConfig,
     );
 
@@ -27,7 +28,7 @@ const Employees = ({ setEmployeeId }) => {
                 // isError informs about failed request.
                     <li>There was an error.</li>
                 )}
-                {isSuccess && (
+                {isSuccess && data && (
                 // isSuccess informs about succeeded request.
                     data.map((employee) => (
                         <EmployeeCard
